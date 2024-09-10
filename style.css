@@ -2,3 +2,29 @@ article {
     max-width: 65ch;
     margin-inline: auto;
 }
+
+.content {
+    --gap: clamp(1rem, 2rem, 3rem);
+    --full: minmax(var(--gap), 1fr);
+    --content: minmax(50ch, 100% - var(--gap) * 2);
+    --minicontent: minmax(25ch, 100% - var(--gap) * 4);
+    --popout: minmax(0, 2rem);
+
+    display: grid;
+    grid-template-columns: 
+    [full-start] var(--full)
+    [popout-start] var(--popout)
+    [content-start] var(--content)
+    [minicontent-start] var(--minicontent) [mini-content-end]
+    var(--content) [content-end]
+    var(--popout) [popout-end]
+    var(--full) [full-end];
+}
+
+.content * {
+    grid-column: content;
+}
+
+.popout {
+    grid-column: popout-start / popout-end;
+}
