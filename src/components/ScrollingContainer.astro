@@ -5,7 +5,7 @@ const { cardContent } = Astro.props;
 <ul class="full-width">
   {
     cardContent.map((card) => (
-      <li>
+      <li class="card">
         <h3>{card.title}</h3>
         <p>{card.body}</p>
       </li>
@@ -15,6 +15,24 @@ const { cardContent } = Astro.props;
 
 <style>
   ul {
+    padding-inline: max(1rem, 50% - var(--content-width) / 2);
+    gap: var(--card-gap);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
     list-style: none;
+  }
+
+  .full-width {
+    grid-column: 1 / -1;
+  }
+
+  .card {
+    width: 300px;
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    background-color: var(--card-background);
+    color: var(--card-text-color);
   }
 </style>
